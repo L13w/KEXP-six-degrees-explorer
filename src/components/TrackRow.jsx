@@ -14,7 +14,7 @@ function linkifyText(text) {
   }).join('');
 }
 
-export default function TrackRow({ track, index, isActive, onClick }) {
+export default function TrackRow({ track, index, isActive, onClick, canSeek = true }) {
   const [imgError, setImgError] = useState(false);
   const artUrl = !imgError && (track.image_uri || track.thumbnail_uri || '');
   const comment = track.comment || '';
@@ -23,7 +23,7 @@ export default function TrackRow({ track, index, isActive, onClick }) {
 
   return (
     <div
-      className={`track-row ${isActive ? 'active' : ''}`}
+      className={`track-row ${isActive ? 'active' : ''} ${!canSeek ? 'no-seek' : ''}`}
       data-track-index={index}
       onClick={onClick}
     >

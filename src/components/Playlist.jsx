@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback, useState } from 'react';
 import TrackRow from './TrackRow';
 
-export default function Playlist({ tracks, currentTrackIndex, onSeekToTrack }) {
+export default function Playlist({ tracks, currentTrackIndex, onSeekToTrack, canSeek }) {
   const listRef = useRef(null);
   const [userScrolling, setUserScrolling] = useState(false);
   const scrollTimeoutRef = useRef(null);
@@ -49,7 +49,8 @@ export default function Playlist({ tracks, currentTrackIndex, onSeekToTrack }) {
           track={track}
           index={i}
           isActive={i === currentTrackIndex}
-          onClick={() => onSeekToTrack(track)}
+          onClick={onSeekToTrack ? () => onSeekToTrack(track) : undefined}
+          canSeek={canSeek}
         />
       ))}
     </div>

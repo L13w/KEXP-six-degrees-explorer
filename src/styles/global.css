@@ -666,8 +666,12 @@ body::after {
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
-.track-row:hover {
+.track-row:hover:not(.no-seek) {
   background: var(--bg-elevated);
+}
+
+.track-row.no-seek {
+  cursor: default;
 }
 
 .track-row.active {
@@ -889,6 +893,15 @@ body::after {
 
 .seek-bar::-webkit-slider-thumb:hover {
   transform: scale(1.2);
+}
+
+.seek-bar:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.seek-bar:disabled::-webkit-slider-thumb {
+  display: none;
 }
 
 .seek-bar::-moz-range-thumb {

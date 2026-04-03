@@ -9,7 +9,7 @@ function formatTime(seconds) {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
-export default function Transport({ audio, show, onShowClick }) {
+export default function Transport({ audio, show, canSeek = true, onShowClick }) {
   const handleSeek = useCallback((e) => {
     audio.seek(Number(e.target.value));
   }, [audio]);
@@ -40,7 +40,8 @@ export default function Transport({ audio, show, onShowClick }) {
           min={0}
           max={audio.duration || 0}
           value={audio.currentTime}
-          onChange={handleSeek}
+          onChange={canSeek ? handleSeek : undefined}
+          disabled={!canSeek}
           step={1}
         />
         <span className="transport-time transport-time-right">{formatTime(audio.duration)}</span>

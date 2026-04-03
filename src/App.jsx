@@ -29,6 +29,7 @@ export default function App() {
   const [view, setView] = useState('selector');
   const [transition, setTransition] = useState(null);
   const audio = useAudioPlayer();
+  const canSeek = !!window.electronAPI;
 
   useEffect(() => {
     loadShows().then(result => {
@@ -142,6 +143,7 @@ export default function App() {
             show={currentShow}
             audio={audio}
             onBack={handleBack}
+            canSeek={canSeek}
           />
         </div>
       )}
@@ -150,6 +152,7 @@ export default function App() {
         <Transport
           audio={audio}
           show={currentShow}
+          canSeek={canSeek}
           onShowClick={view === 'selector' ? () => setView('player') : undefined}
         />
       )}

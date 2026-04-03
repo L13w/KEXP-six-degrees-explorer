@@ -22,7 +22,7 @@ function formatShowTime(startTime) {
   });
 }
 
-export default function Player({ show, audio, onBack }) {
+export default function Player({ show, audio, onBack, canSeek }) {
   const currentTrackIndex = usePlaylistSync(show.tracks, audio.currentTime);
   const currentTrack = show.tracks[currentTrackIndex] || null;
   const [copied, setCopied] = useState(false);
@@ -97,7 +97,8 @@ export default function Player({ show, audio, onBack }) {
           <Playlist
             tracks={show.tracks}
             currentTrackIndex={currentTrackIndex}
-            onSeekToTrack={handleSeekToTrack}
+            onSeekToTrack={canSeek ? handleSeekToTrack : undefined}
+            canSeek={canSeek}
           />
         </div>
       </div>
