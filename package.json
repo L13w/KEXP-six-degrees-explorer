@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "vite build",
     "build:data": "node scripts/build-data.js",
-    "build:web": "node scripts/build-data.js && vite build",
     "electron": "electron .",
     "start": "vite build && electron .",
     "dist": "vite build && electron-builder --win portable"
